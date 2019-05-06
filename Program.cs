@@ -12,6 +12,7 @@ namespace ConsoleApp.PostgreSQL
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("╔═══════════════╗");
             Console.WriteLine("║ 1 List Module ║");
+            Console.WriteLine("╚═══════════════╝");
             
             Console.Write("Specify Model Name: ");
             
@@ -25,3 +26,5 @@ namespace ConsoleApp.PostgreSQL
         }
     }
 }
+
+add two more tables for customers and rentals. keys. and populate them .make a menu for users to populate database and use a loop to reiterate the menu
