@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 namespace ConsoleApp.PostgreSQL {
 
  public class Car
@@ -10,6 +12,8 @@ namespace ConsoleApp.PostgreSQL {
         public string Colour { get; set; }
         public int Milage { get; set; }
 
+        public virtual ICollection<Rental> Rentals { get; set; }
+        
         public override string ToString() {
             return this.Id + "-" + this.Model;
         }

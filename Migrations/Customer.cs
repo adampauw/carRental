@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 
 namespace ConsoleApp.PostgreSQL {
 
@@ -9,9 +10,8 @@ namespace ConsoleApp.PostgreSQL {
         public int DL_Number { get; set; }
         public int phone_number { get; set; }
 
-        public override string ToString() {
-            return this.Id + "-" + this.first_name;
-        }
+        public virtual ICollection<Rental> Rentals { get; set; }
+
 
     }
 }
