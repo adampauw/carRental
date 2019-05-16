@@ -9,45 +9,134 @@ namespace ConsoleApp.PostgreSQL
     {
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("╔════════════════╗");
-            Console.WriteLine("║ 1 Add Car      ║");
-            Console.WriteLine("╚════════════════╝");
-            Console.WriteLine("╔════════════════╗");
-            Console.WriteLine("║ 2 Add Customer ║");
-            Console.WriteLine("╚════════════════╝");
-            Console.WriteLine("╔════════════════╗");
-            Console.WriteLine("║ 3 Add Rental   ║");
-            Console.WriteLine("╚════════════════╝");
+            char selection;
+            do
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("╔════════════════╗");
+                Console.WriteLine("║ 1 Add Car      ║");
+                Console.WriteLine("╚════════════════╝");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("╔════════════════╗");
+                Console.WriteLine("║ 2 Add Customer ║");
+                Console.WriteLine("╚════════════════╝");
+                Console.WriteLine("╔════════════════╗");
+                Console.WriteLine("║ 3 Add Rental   ║");
+                Console.WriteLine("╚════════════════╝");
+                Console.WriteLine("╔════════════════╗");
+                Console.WriteLine("║ 4  List Cars   ║");
+                Console.WriteLine("╚════════════════╝");
+                Console.WriteLine("╔════════════════╗");
+                Console.WriteLine("║ 5  Delete Car  ║");
+                Console.WriteLine("╚════════════════╝");
+                Console.WriteLine("");
 
-            Console.Write("Choose an option number: ");
-            int selection = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Choose an option number: ");
+                Console.Beep();
+                Console.Write("");
+                selection = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
 
-            switch(selection) {
-                case 1:
-                    Console.WriteLine("This is option 1");
-                    break;
-                case 2:
-                    Console.WriteLine("This is option 2");
-                    break;
-                case 3:
-                    Console.WriteLine("This is option 3");
-                    break;
-                default: 
-                    Console.WriteLine("Thats not an option you fool");
-                    break;
+                switch (selection)
+                {
+                    case '1': AddCar(); break;
+                    case '2': AddCustomer(); break;
+                    case '4': ListCars(); break;
+                    case '5': DeleteCar(); break;
+                    case 'q':
+                        Console.WriteLine("Quitting now");
+                        break;
+                    default:
+                        Console.WriteLine("Thats not an option you fool");
+                        break;
+                }
+            } while (selection != 'q');
+        }
+
+        private static void AddCar()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Specify Make: ");
+            var make = Console.ReadLine();
+            Console.WriteLine("Specify Model: ");
+            var model = Console.ReadLine();
+            Console.WriteLine("and now the Year: ");
+            var year = Console.ReadLine();
+            Console.WriteLine("What colour is it?");
+            var colour = Console.ReadLine();
+            Console.WriteLine("Whats the odometer reading?");
+            var mile = Console.ReadLine();
+            using (var db = new CarRentalDBContext())
+            {
+                //Car car = new Car();
+                //car.Make = make;
+                //db.Cars.Add(car);
+
+                db.Cars.Add(new Car()
+                {
+                    Make = make,
+                    Model = model,
+                    Year = Convert.ToInt32(year),
+                    Colour = colour,
+                    Milage = Convert.ToInt32(mile)
+                });
+                db.SaveChanges();
             }
+        }
 
-            // var option = Console.ReadLine();
+        private static void AddCustomer()
+        {
+            Console.WriteLine("First Name: ");
+            var nameFirst = Console.ReadLine();
+            Console.WriteLine("Last name: ");
+            var namelast = Console.ReadLine();
+            Console.WriteLine("Drivers License: ");
+            var license = Console.ReadLine();
+            Console.WriteLine("Phone number");
+            var phone = Console.ReadLine();
+        }
 
-            // using (var db = new CarRentalDBContext())
-            // {
-            //     // db.Cars.Where(car => car.Model.Contains(model))
-            //     //     .ToList()
-            //     //     .ForEach(car => Console.WriteLine(car.Model));
-            // }
+        private static void ListCars()
+        {
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+            {
+                db.Cars
+                    .ToList()
+                    .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
+                Console.WriteLine("");
+                Console.WriteLine("Press enter to return to main menu");
+                Console.ReadLine();
+            }
+        }
+
+        private static void DeleteCar()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+            {
+                db.Cars
+               .ToList()
+               .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
+                Console.WriteLine("");
+                Console.WriteLine("Specify which car ID to remove: ");
+                int carId = Int32.Parse(Console.ReadLine());
+                Console.WriteLine(carId);
+                var returnedCar = db.Cars.FirstOrDefault(car => car.Id.Equals(carId));
+                if (returnedCar == null)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("This car does not exist");
+                    DeleteCar();
+                    return;
+                }
+                db.Cars.Remove(returnedCar);
+                db.SaveChanges();
+            }
         }
     }
 }
 
-//and populate them .make a menu for users to populate database and use a loop to reiterate the menu
+// make it pretty, add cars, list cars, remove cars, rent cars? update cars? 
