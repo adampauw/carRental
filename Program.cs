@@ -166,7 +166,10 @@ namespace ConsoleApp.PostgreSQL
         {
             Console.WriteLine("");
             using (var db = new CarRentalDBContext())
+
             {
+                char selection;
+
                 db.Cars
                     .ToList()
                     .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
@@ -175,11 +178,73 @@ namespace ConsoleApp.PostgreSQL
                 int carId = Convert.ToInt32(Console.ReadLine());
                 var foundCar = db.Cars.Find(carId);
                 Console.WriteLine("");
-                Console.WriteLine("Enter new Make name");
-                foundCar.Make = Console.ReadLine();
-                db.SaveChanges();
+                Console.WriteLine("Choose the field you wish to modify");
+                Console.WriteLine("");
+                Console.WriteLine("╔══════════╗ ╔═══════════╗ ╔═══════════╗ ╔═══════════╗ ╔═══════════╗");
+                Console.WriteLine("║ 1. Make  ║ ║  2. Model ║ ║  3. Year  ║ ║ 4. Colour ║ ║ 5. Milage ║");
+                Console.WriteLine("╚══════════╝ ╚═══════════╝ ╚═══════════╝ ╚═══════════╝ ╚═══════════╝");
+                selection = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
+                switch (selection)
+                {
+                    case '1':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Make");
+                        foundCar.Make = Console.ReadLine();
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Car's Make has been successfully updated!");
+                        break;
+
+                    case '2':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Model");
+                        foundCar.Model = Console.ReadLine();
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Car's Model has been successfully updated!");
+                        break;
+
+                    case '3':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Year");
+                        foundCar.Year = Int32.Parse(Console.ReadLine());
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Car's Year has been successfully updated!");
+                        break;
+
+                    case '4':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Colour");
+                        foundCar.Colour = Console.ReadLine();
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Car's Colour has been successfully updated!");
+                        break;
+
+                    case '5':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Milage");
+                        foundCar.Milage = Int32.Parse(Console.ReadLine());
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Car's Milage has been successfully updated!");
+                        break;
+
+                    case 'q':
+                        Console.WriteLine("");
+                        Console.WriteLine("Quitting now");
+                        break;
+
+                    default:
+                        Console.WriteLine("");
+                        Console.WriteLine("Thats not an option you fool");
+                        break;
+                }
             }
         }
+
 
         private static void ListCars()
         {
@@ -298,6 +363,76 @@ namespace ConsoleApp.PostgreSQL
 
         private static void UpdateCustomer()
         {
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+
+            {
+                char selection;
+
+                db.Customers
+                    .ToList()
+                    .ForEach(Customer => Console.WriteLine("Id:" + Customer.Id + "  " + Customer.first_name + " " + Customer.last_name));
+                Console.WriteLine("");
+                Console.WriteLine("Enter Id of the Customer you wish to modify");
+                int customerId = Convert.ToInt32(Console.ReadLine());
+                var foundCustomer = db.Customers.Find(customerId);
+                Console.WriteLine("");
+                Console.WriteLine("Choose the field you wish to modify");
+                Console.WriteLine("");
+                Console.WriteLine("╔═══════════════╗ ╔══════════════╗ ╔═════════════╗ ╔═════════════╗ ");
+                Console.WriteLine("║ 1. First Name ║ ║ 2. Last Name ║ ║    3. DL    ║ ║  4. Phone   ║ ");
+                Console.WriteLine("╚═══════════════╝ ╚══════════════╝ ╚═════════════╝ ╚═════════════╝ ");
+                selection = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
+                switch (selection)
+                {
+                    case '1':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new First Name");
+                        foundCustomer.first_name = Console.ReadLine();
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Customer's First Name has been successfully updated!");
+                        break;
+
+                    case '2':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Last Name");
+                        foundCustomer.last_name = Console.ReadLine();
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Customer's Last Name has been successfully updated!");
+                        break;
+
+                    case '3':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Drivers License");
+                        foundCustomer.DL_Number = Int32.Parse(Console.ReadLine());
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Customer's Drivers License has been successfully updated!");
+                        break;
+
+                    case '4':
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter the new Phone Number");
+                        foundCustomer.phone_number = Int32.Parse(Console.ReadLine());
+                        Console.WriteLine("");
+                        db.SaveChanges();
+                        Console.WriteLine("Customer's Phone Number has been successfully updated!");
+                        break;
+
+                    case 'q':
+                        Console.WriteLine("");
+                        Console.WriteLine("Quitting now");
+                        break;
+
+                    default:
+                        Console.WriteLine("");
+                        Console.WriteLine("Thats not an option you fool");
+                        break;
+                }
+            }
         }
 
         private static void ListCustomers()
