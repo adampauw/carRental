@@ -9,28 +9,78 @@ namespace ConsoleApp.PostgreSQL
     {
         static void Main(string[] args)
         {
+            MainMenu();
+        }
+
+        static void MainMenu()
+        {
             char selection;
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("╔═════════════════╗");
+                Console.WriteLine("║ 1 Car Menu      ║");
+                Console.WriteLine("╚═════════════════╝");
+                Console.WriteLine("╔═════════════════╗");
+                Console.WriteLine("║ 2 Customer Menu ║");
+                Console.WriteLine("╚═════════════════╝");
+                Console.WriteLine("╔═════════════════╗");
+                Console.WriteLine("║ 3 Rental Menu   ║");
+                Console.WriteLine("╚═════════════════╝");
+                Console.WriteLine("");
                 Console.ForegroundColor = ConsoleColor.White;
+
+                Console.Write("Choose an option number: ");
+                Console.Beep();
+                Console.Write("");
+                Console.Write("");
+                Console.Write("");
+                selection = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
+
+                switch (selection)
+                {
+                    case '1': CarMenu(); break;
+                    case '2': CustomerMenu(); break;
+                    case '3': RentalMenu(); break;
+                    case 'q':
+                        Console.WriteLine("Quitting now");
+                        break;
+                    default:
+                        Console.WriteLine("Thats not an option you fool");
+                        break;
+                }
+            } while (selection != 'q');
+        }
+
+        // ------------ Car Functions ------------
+
+        private static void CarMenu()
+        {
+            char selection;
+            do
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("╔════════════════╗");
                 Console.WriteLine("║ 1 Add Car      ║");
                 Console.WriteLine("╚════════════════╝");
-                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("╔════════════════╗");
-                Console.WriteLine("║ 2 Add Customer ║");
+                Console.WriteLine("║ 2 Delete Car   ║");
                 Console.WriteLine("╚════════════════╝");
                 Console.WriteLine("╔════════════════╗");
-                Console.WriteLine("║ 3 Add Rental   ║");
+                Console.WriteLine("║ 3 Update Car   ║");
                 Console.WriteLine("╚════════════════╝");
                 Console.WriteLine("╔════════════════╗");
-                Console.WriteLine("║ 4  List Cars   ║");
+                Console.WriteLine("║ 4 List Cars    ║");
                 Console.WriteLine("╚════════════════╝");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("╔════════════════╗");
-                Console.WriteLine("║ 5  Delete Car  ║");
+                Console.WriteLine("║ 5 Main Menu    ║");
                 Console.WriteLine("╚════════════════╝");
                 Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.White;
 
                 Console.Write("Choose an option number: ");
                 Console.Beep();
@@ -41,9 +91,10 @@ namespace ConsoleApp.PostgreSQL
                 switch (selection)
                 {
                     case '1': AddCar(); break;
-                    case '2': AddCustomer(); break;
+                    case '2': DeleteCar(); break;
+                    case '3': UpdateCar(); break;
                     case '4': ListCars(); break;
-                    case '5': DeleteCar(); break;
+                    case '5': MainMenu(); break;
                     case 'q':
                         Console.WriteLine("Quitting now");
                         break;
@@ -85,32 +136,6 @@ namespace ConsoleApp.PostgreSQL
             }
         }
 
-        private static void AddCustomer()
-        {
-            Console.WriteLine("First Name: ");
-            var nameFirst = Console.ReadLine();
-            Console.WriteLine("Last name: ");
-            var namelast = Console.ReadLine();
-            Console.WriteLine("Drivers License: ");
-            var license = Console.ReadLine();
-            Console.WriteLine("Phone number");
-            var phone = Console.ReadLine();
-        }
-
-        private static void ListCars()
-        {
-            Console.WriteLine("");
-            using (var db = new CarRentalDBContext())
-            {
-                db.Cars
-                    .ToList()
-                    .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
-                Console.WriteLine("");
-                Console.WriteLine("Press enter to return to main menu");
-                Console.ReadLine();
-            }
-        }
-
         private static void DeleteCar()
         {
             Console.WriteLine("");
@@ -136,7 +161,169 @@ namespace ConsoleApp.PostgreSQL
                 db.SaveChanges();
             }
         }
+
+        private static void UpdateCar()
+        {
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+            {
+                db.Cars
+                    .ToList()
+                    .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
+                Console.WriteLine("");
+                Console.WriteLine("Enter Id of the car you wish to modify");
+                int carId = Convert.ToInt32(Console.ReadLine());
+                var foundCar = db.Cars.Find(carId);
+                Console.WriteLine("");
+                Console.WriteLine("Enter new Make name");
+                foundCar.Make = Console.ReadLine();
+                db.SaveChanges();
+            }
+        }
+
+        private static void ListCars()
+        {
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+            {
+                db.Cars
+                    .ToList()
+                    .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
+                Console.WriteLine("");
+                Console.WriteLine("Press enter to return to Car menu");
+                Console.ReadLine();
+            }
+        }
+
+
+        // ------------ Customer Functions ------------
+
+
+        private static void CustomerMenu()
+        {
+            char selection;
+            do
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("╔═══════════════════╗");
+                Console.WriteLine("║ 1 Add Customer    ║");
+                Console.WriteLine("╚═══════════════════╝");
+                Console.WriteLine("╔═══════════════════╗");
+                Console.WriteLine("║ 2 Delete Customer ║");
+                Console.WriteLine("╚═══════════════════╝");
+                Console.WriteLine("╔═══════════════════╗");
+                Console.WriteLine("║ 3 Update Customer ║");
+                Console.WriteLine("╚═══════════════════╝");
+                Console.WriteLine("╔═══════════════════╗");
+                Console.WriteLine("║ 4 List Customers  ║");
+                Console.WriteLine("╚═══════════════════╝");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("╔═══════════════════╗");
+                Console.WriteLine("║ 5 Main Menu       ║");
+                Console.WriteLine("╚═══════════════════╝");
+                Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.Write("Choose an option number: ");
+                Console.Beep();
+                Console.Write("");
+                selection = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
+
+                switch (selection)
+                {
+                    case '1': AddCustomer(); break;
+                    case '2': DeleteCustomer(); break;
+                    case '3': UpdateCustomer(); break;
+                    case '4': ListCustomers(); break;
+                    case '5': MainMenu(); break;
+                    case 'q':
+                        Console.WriteLine("Quitting now");
+                        break;
+                    default:
+                        Console.WriteLine("Thats not an option you fool");
+                        break;
+                }
+            } while (selection != 'q');
+        }
+        private static void AddCustomer()
+        {
+            Console.WriteLine("First Name: ");
+            var nameFirst = Console.ReadLine();
+            Console.WriteLine("Last name: ");
+            var namelast = Console.ReadLine();
+            Console.WriteLine("Drivers License: ");
+            var license = Console.ReadLine();
+            Console.WriteLine("Phone number");
+            var phone = Console.ReadLine();
+            using (var db = new CarRentalDBContext())
+            {
+                db.Customers.Add(new Customer()
+                {
+                    first_name = nameFirst,
+                    last_name = namelast,
+                    DL_Number = Convert.ToInt32(license),
+                    phone_number = Convert.ToInt32(phone),
+                });
+                db.SaveChanges();
+            }
+        }
+
+        private static void DeleteCustomer()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+            {
+                db.Customers
+               .ToList()
+               .ForEach(Customer => Console.WriteLine("Id:" + Customer.Id + "  " + Customer.first_name + " " + Customer.last_name));
+                Console.WriteLine("");
+                Console.WriteLine("Specify which Customer ID to remove: ");
+                int customerId = Int32.Parse(Console.ReadLine());
+                Console.WriteLine(customerId);
+                var idRecieved = db.Customers.FirstOrDefault(Customer => Customer.Id.Equals(customerId));
+                if (idRecieved == null)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("This car does not exist");
+                    DeleteCar();
+                    return;
+                }
+                db.Customers.Remove(idRecieved);
+                db.SaveChanges();
+            }
+        }
+
+        private static void UpdateCustomer()
+        {
+        }
+
+        private static void ListCustomers()
+        {
+            Console.WriteLine("");
+            using (var db = new CarRentalDBContext())
+            {
+                db.Customers
+                    .ToList()
+                    .ForEach(Customer => Console.WriteLine("Id:" + Customer.Id + "  " + Customer.first_name + " " + Customer.last_name));
+                Console.WriteLine("");
+                Console.WriteLine("Press enter to return to Customer menu");
+                Console.ReadLine();
+            }
+        }
+        // ------------ Rental Functions ------------
+
+        static void RentalMenu()
+        {
+
+        }
     }
 }
+
+
+
+
 
 // make it pretty, add cars, list cars, remove cars, rent cars? update cars? 
