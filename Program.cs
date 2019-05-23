@@ -12,12 +12,22 @@ namespace ConsoleApp.PostgreSQL
             MainMenu();
         }
 
+        static void Title()
+        {
+            Console.WriteLine("  ____  ____  __ _  ____        _  _   __   __ _ ");
+            Console.WriteLine(" (  _ \\(  __)(  ( \\(_  _) ___  ( \\/ ) / _\\ (  ( \\ ");
+            Console.WriteLine("  )   / ) _) /    /  )(  (___) / \\/ \\/    \\/    / ");
+            Console.WriteLine(" (__\\_)(____)\\_)__) (__)       \\_)(_/\\_/\\_/\\_)__) ");
+            Console.WriteLine("");
+        }
+
         static void MainMenu()
         {
             char selection;
             do
             {
                 Console.Clear();
+                Title();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("╔═════════════════╗");
                 Console.WriteLine("║ 1 Car Menu      ║");
@@ -62,6 +72,7 @@ namespace ConsoleApp.PostgreSQL
             do
             {
                 Console.Clear();
+                Title();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("╔════════════════╗");
                 Console.WriteLine("║ 1 Add Car      ║");
@@ -270,6 +281,7 @@ namespace ConsoleApp.PostgreSQL
             do
             {
                 Console.Clear();
+                Title();
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("╔═══════════════════╗");
                 Console.WriteLine("║ 1 Add Customer    ║");
@@ -452,7 +464,45 @@ namespace ConsoleApp.PostgreSQL
 
         static void RentalMenu()
         {
+            AddRental();
+        }
 
+        private static void AddRental()
+
+        {
+            using (var db = new CarRentalDBContext())
+            {
+                db.Customers
+                .ToList()
+                .ForEach(Customer => Console.WriteLine("Id:" + Customer.Id + "  " + Customer.first_name + " " + Customer.last_name));
+                Console.WriteLine("");
+                Console.WriteLine("Enter Id of the Customer");
+                int customerId = Convert.ToInt32(Console.ReadLine());
+                var foundCustomer = db.Customers.Find(customerId);
+
+                db.Cars
+                .ToList()
+                .ForEach(Car => Console.WriteLine("Id:" + Car.Id + "  " + Car.Make + " " + Car.Model));
+                Console.WriteLine("");
+                Console.WriteLine("Enter Id of the Car they wish to Rent");
+                int carId = Convert.ToInt32(Console.ReadLine());
+                var foundCar = db.Customers.Find(carId);
+
+                Console.WriteLine("Enter start date DDMMYY");
+                var dateOut = Console.ReadLine();
+                Console.WriteLine("Enter end date DDMMYY");
+                var dateIn = Console.ReadLine();
+                {
+                    db.Rentals.Add(new Rental()
+                    {
+                        CustomerId = Convert.ToInt32(foundCustomer),
+                        CarId = Convert.ToInt32(foundCar),
+                        StartDate = dateOut,
+                        EndDate = dateIn,
+                    });
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }
@@ -461,4 +511,6 @@ namespace ConsoleApp.PostgreSQL
 
 
 
-// make it pretty, add cars, list cars, remove cars, rent cars? update cars? 
+// rent cars, change menus so that I return to previous menu not call a menu again as a function
+// query rental table to see if a car is rented via if there is a record already in the rental table with its id and then via if that result is before or after the return date
+// fix spaces in date.time.now and center, count date length then probably add to add spaces
