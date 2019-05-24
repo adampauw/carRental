@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace ConsoleApp.PostgreSQL {
 
@@ -11,8 +12,8 @@ namespace ConsoleApp.PostgreSQL {
         public virtual Customer Customer { get; set; }
         public int CarId { get; set; }
         public virtual Car Car { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
     }
 }

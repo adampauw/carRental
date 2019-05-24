@@ -496,8 +496,8 @@ namespace ConsoleApp.PostgreSQL
                 {
                     CustomerId = customerId,
                     CarId = carId,
-                    StartDate = dateOut,
-                    EndDate = dateIn,
+                    StartDate = DateTime.Parse(dateOut),
+                    EndDate = DateTime.Parse(dateIn),
                 });
                 db.SaveChanges();
 
@@ -510,6 +510,9 @@ namespace ConsoleApp.PostgreSQL
 
 
 
-// rent cars, change menus so that I return to previous menu not call a menu again as a function
-// query rental table to see if a car is rented via if there is a record already in the rental table with its id and then via if that result is before or after the return date
-// fix spaces in date.time.now and center, count date length then probably add to add spaces
+/*  
+ rent cars, change menus so that I return to previous menu not call a menu again as a function
+ Check carID and check if the returned date is null, if so it cannot be rented
+ Add exception handling to cover an error on double booking nicely
+ Learn about Arrays and Lists in .net core and make a small example of a multidimensional array
+*/
