@@ -15,9 +15,9 @@ namespace ConsoleApp.PostgreSQL
         static void Title()
         {
             Console.WriteLine("  ____  ____  __ _  ____        _  _   __   __ _ ");
-            Console.WriteLine(" (  _ \\(  __)(  ( \\(_  _) ___  ( \\/ ) / _\\ (  ( \\ ");
-            Console.WriteLine("  )   / ) _) /    /  )(  (___) / \\/ \\/    \\/    / ");
-            Console.WriteLine(" (__\\_)(____)\\_)__) (__)       \\_)(_/\\_/\\_/\\_)__) ");
+            Console.WriteLine(@" (  _ \(  __)(  ( \(_  _) ___  ( \/ ) / _\ (  ( \ ");
+            Console.WriteLine(@"  )   / ) _) /    /  )(  (___) / \/ \/    \/    / ");
+            Console.WriteLine(@" (__\_)(____)\_)__) (__)       \_)(_/\_/\_/\_)__) ");
             Console.WriteLine("");
         }
 
@@ -42,7 +42,6 @@ namespace ConsoleApp.PostgreSQL
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.Write("Choose an option number: ");
-                Console.Beep();
                 Console.Write("");
                 Console.Write("");
                 Console.Write("");
@@ -486,22 +485,22 @@ namespace ConsoleApp.PostgreSQL
                 Console.WriteLine("");
                 Console.WriteLine("Enter Id of the Car they wish to Rent");
                 int carId = Convert.ToInt32(Console.ReadLine());
-                var foundCar = db.Customers.Find(carId);
+                var foundCar = db.Cars.Find(carId);
 
                 Console.WriteLine("Enter start date DDMMYY");
                 var dateOut = Console.ReadLine();
                 Console.WriteLine("Enter end date DDMMYY");
                 var dateIn = Console.ReadLine();
+
+                db.Rentals.Add(new Rental()
                 {
-                    db.Rentals.Add(new Rental()
-                    {
-                        CustomerId = Convert.ToInt32(foundCustomer),
-                        CarId = Convert.ToInt32(foundCar),
-                        StartDate = dateOut,
-                        EndDate = dateIn,
-                    });
-                    db.SaveChanges();
-                }
+                    CustomerId = customerId,
+                    CarId = carId,
+                    StartDate = dateOut,
+                    EndDate = dateIn,
+                });
+                db.SaveChanges();
+
             }
         }
     }
