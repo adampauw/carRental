@@ -511,8 +511,9 @@ namespace ConsoleApp.PostgreSQL
 
 
 /*  
- rent cars, change menus so that I return to previous menu not call a menu again as a function
- Check carID and check if the returned date is null, if so it cannot be rented
+ Rent cars,
+ Change menus so that I return to previous menu not call a menu again as a function
+ Check carID and check if the returned date is null, if so it cannot be rented, Add returned date column obviously 
  Add exception handling to cover an error on double booking nicely
  Learn about Arrays and Lists in .net core and make a small example of a multidimensional array
 */
