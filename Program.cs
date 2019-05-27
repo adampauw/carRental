@@ -496,13 +496,25 @@ namespace ConsoleApp.PostgreSQL
                 {
                     CustomerId = customerId,
                     CarId = carId,
-                    StartDate = DateTime.Parse(dateOut),
-                    EndDate = DateTime.Parse(dateIn),
+                    StartDate = DateTime.ParseExact(dateOut, "ddmmyy", null),
+                    EndDate = DateTime.ParseExact(dateIn, "ddmmyy", null),
+                    ReturnDate = null
                 });
-                db.SaveChanges();
 
+                var rentable = db.Rentals.FirstOrDefault(Rental => Rental.ReturnDate == null && Rental.CarId == carId);
+
+                if (rentable == null)
+                {
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Console.WriteLine("cars gone mate");
+                    Console.ReadLine();
+                }
             }
         }
+        
     }
 }
 
@@ -510,10 +522,7 @@ namespace ConsoleApp.PostgreSQL
 
 
 
-/*  
- Rent cars,
+/* 
  Change menus so that I return to previous menu not call a menu again as a function
- Check carID and check if the returned date is null, if so it cannot be rented, Add returned date column obviously 
- Add exception handling to cover an error on double booking nicely
  Learn about Arrays and Lists in .net core and make a small example of a multidimensional array
 */
