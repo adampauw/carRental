@@ -498,23 +498,20 @@ namespace ConsoleApp.PostgreSQL
                     CarId = carId,
                     StartDate = DateTime.ParseExact(dateOut, "ddmmyy", null),
                     EndDate = DateTime.ParseExact(dateIn, "ddmmyy", null),
-                    ReturnDate = null
+                    ReturnDate = DateTime.ParseExact("010170", "ddmmyy", null)
                 });
 
-                var rentable = db.Rentals.FirstOrDefault(Rental => Rental.ReturnDate == null && Rental.CarId == carId);
-
-                if (rentable == null)
+                try 
                 {
                     db.SaveChanges();
                 }
-                else
+                catch
                 {
                     Console.WriteLine("cars gone mate");
                     Console.ReadLine();
                 }
             }
         }
-        
     }
 }
 
@@ -523,6 +520,28 @@ namespace ConsoleApp.PostgreSQL
 
 
 /* 
- Change menus so that I return to previous menu not call a menu again as a function
- Learn about Arrays and Lists in .net core and make a small example of a multidimensional array
+    Try again the unique index
+    Try to get menu with level and loop and arrays
 */
+
+
+// static void Skeleton(string[] args)
+// {
+//     // const[,,] mainMenu = {
+//     //     {"customer", {"add customer","list customer", "delete", "update"}},
+//     //     {"cars", {"add car","list car", "delete", "update"}},
+//     //     {"rentals", {"add rental","list rentals", "delete", "update"}},
+//     // };
+
+
+//     foreach (var x in mainMenu)
+//     {
+//         var title = x[0];
+//         var submenuTitles = x[1];
+
+
+//     }
+
+
+
+// }

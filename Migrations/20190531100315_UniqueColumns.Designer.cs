@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Rentman.Migrations
 {
     [DbContext(typeof(CarRentalDBContext))]
-    partial class CarRentalDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190531100315_UniqueColumns")]
+    partial class UniqueColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,18 +69,19 @@ namespace Rentman.Migrations
 
                     b.Property<DateTime?>("EndDate");
 
-                    b.Property<DateTime?>("ReturnDate");
+                    b.Property<DateTime?>("ReturnDate")
+                        .IsRequired();
 
                     b.Property<DateTime?>("StartDate");
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("ReturnDate")
+                        .HasName("AlternateKey_ReturnDate");
+
                     b.HasIndex("CarId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("ReturnDate", "CarId")
-                        .IsUnique();
 
                     b.ToTable("Rentals");
                 });

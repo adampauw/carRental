@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
 
+
 namespace ConsoleApp.PostgreSQL {
 
  public class Rental
