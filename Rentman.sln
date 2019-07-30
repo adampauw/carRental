@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rentman", "RentmanConsole\Rentman.csproj", "{DD399A81-E82E-4063-9CDA-354F5008F8F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentManLib", "RentManLib\RentManLib.csproj", "{52A64C52-A8CB-4848-96F0-67EC295FFB51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentmanWeb", "RentmanWeb\RentmanWeb.csproj", "{42560CE4-E333-4EBE-B8F7-3A9AEF73EEB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD399A81-E82E-4063-9CDA-354F5008F8F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD399A81-E82E-4063-9CDA-354F5008F8F1}.Debug|x86.Build.0 = Debug|Any CPU
+		{DD399A81-E82E-4063-9CDA-354F5008F8F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{DD399A81-E82E-4063-9CDA-354F5008F8F1}.Release|x86.Build.0 = Release|Any CPU
+		{52A64C52-A8CB-4848-96F0-67EC295FFB51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52A64C52-A8CB-4848-96F0-67EC295FFB51}.Debug|x86.Build.0 = Debug|Any CPU
+		{52A64C52-A8CB-4848-96F0-67EC295FFB51}.Release|x86.ActiveCfg = Release|Any CPU
+		{52A64C52-A8CB-4848-96F0-67EC295FFB51}.Release|x86.Build.0 = Release|Any CPU
+		{42560CE4-E333-4EBE-B8F7-3A9AEF73EEB2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{42560CE4-E333-4EBE-B8F7-3A9AEF73EEB2}.Debug|x86.Build.0 = Debug|Any CPU
+		{42560CE4-E333-4EBE-B8F7-3A9AEF73EEB2}.Release|x86.ActiveCfg = Release|Any CPU
+		{42560CE4-E333-4EBE-B8F7-3A9AEF73EEB2}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
