@@ -1,0 +1,11 @@
+/Users/adampauw/Rentman/RentManLib/obj/Debug/netcoreapp2.2/RentManLib.csprojAssemblyReference.cache
+/Users/adampauw/Rentman/RentManLib/obj/Debug/netcoreapp2.2/RentManLib.csproj.CoreCompileInputs.cache
+/Users/adampauw/Rentman/RentManLib/obj/Debug/netcoreapp2.2/RentManLib.AssemblyInfoInputs.cache
+/Users/adampauw/Rentman/RentManLib/obj/Debug/netcoreapp2.2/RentManLib.AssemblyInfo.cs
+/Users/adampauw/Rentman/RentManLib/bin/Debug/netcoreapp2.2/RentManLib.deps.json
+/Users/adampauw/Rentman/RentManLib/bin/Debug/netcoreapp2.2/RentManLib.runtimeconfig.json
+/Users/adampauw/Rentman/RentManLib/bin/Debug/netcoreapp2.2/RentManLib.runtimeconfig.dev.json
+/Users/adampauw/Rentman/RentManLib/bin/Debug/netcoreapp2.2/RentManLib.dll
+/Users/adampauw/Rentman/RentManLib/bin/Debug/netcoreapp2.2/RentManLib.pdb
+/Users/adampauw/Rentman/RentManLib/obj/Debug/netcoreapp2.2/RentManLib.dll
+/Users/adampauw/Rentman/RentManLib/obj/Debug/netcoreapp2.2/RentManLib.pdb

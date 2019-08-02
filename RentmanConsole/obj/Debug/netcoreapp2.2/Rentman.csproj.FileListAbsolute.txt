@@ -9,3 +9,17 @@
 /Users/adampauw/Rentman/obj/Debug/netcoreapp2.2/Rentman.AssemblyInfo.cs
 /Users/adampauw/Rentman/obj/Debug/netcoreapp2.2/Rentman.dll
 /Users/adampauw/Rentman/obj/Debug/netcoreapp2.2/Rentman.pdb
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/Rentman.deps.json
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/Rentman.runtimeconfig.json
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/Rentman.runtimeconfig.dev.json
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/Rentman.dll
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/Rentman.pdb
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/RentManLib.dll
+/Users/adampauw/Rentman/RentmanConsole/bin/Debug/netcoreapp2.2/RentManLib.pdb
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.csprojAssemblyReference.cache
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.csproj.CoreCompileInputs.cache
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.AssemblyInfoInputs.cache
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.AssemblyInfo.cs
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.csproj.CopyComplete
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.dll
+/Users/adampauw/Rentman/RentmanConsole/obj/Debug/netcoreapp2.2/Rentman.pdb
