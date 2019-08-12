@@ -8,6 +8,7 @@ namespace ConsoleApp.PostgreSQL
 {
     class Program
     {
+        static CarRepository carRepo = new RentmanLib.CarRepository();
         static void Main(string[] args)
         {
             MainMenu();
@@ -125,151 +126,36 @@ namespace ConsoleApp.PostgreSQL
             Console.WriteLine("Specify Model: ");
             var model = Console.ReadLine();
             Console.WriteLine("and now the Year: ");
-            var year = Console.ReadLine();
+            var year = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("What colour is it?");
             var colour = Console.ReadLine();
             Console.WriteLine("Whats the odometer reading?");
-            var mile = Console.ReadLine();
-            using (var db = new CarRentalDBContext())
-            {
-                //Car car = new Car();
-                //car.Make = make;
-                //db.Cars.Add(car);
-
-                db.Cars.Add(new Car()
-                {
-                    Make = make,
-                    Model = model,
-                    Year = Convert.ToInt32(year),
-                    Colour = colour,
-                    Milage = Convert.ToInt32(mile)
-                });
-                db.SaveChanges();
-            }
+            var mile = Convert.ToInt32(Console.ReadLine());
+            carRepo.Add(make, model, year, colour, mile);
         }
 
         private static void DeleteCar()
         {
             Console.WriteLine("");
             Console.WriteLine("");
-            using (var db = new CarRentalDBContext())
-            {
-                db.Cars
-               .ToList()
-               .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
-                Console.WriteLine("");
-                Console.WriteLine("Specify which car ID to remove: ");
-                int carId = Int32.Parse(Console.ReadLine());
-                Console.WriteLine(carId);
-                var returnedCar = db.Cars.FirstOrDefault(car => car.Id.Equals(carId));
-                if (returnedCar == null)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("This car does not exist");
-                    DeleteCar();
-                    return;
-                }
-                db.Cars.Remove(returnedCar);
-                db.SaveChanges();
-            }
+            carRepo.Delete();
+
         }
 
         private static void UpdateCar()
         {
             Console.WriteLine("");
-            using (var db = new CarRentalDBContext())
+            Console.WriteLine("");
+            carRepo.Update();
 
-            {
-                char selection;
-
-                db.Cars
-                    .ToList()
-                    .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
-                Console.WriteLine("");
-                Console.WriteLine("Enter Id of the car you wish to modify");
-                int carId = Convert.ToInt32(Console.ReadLine());
-                var foundCar = db.Cars.Find(carId);
-                Console.WriteLine("");
-                Console.WriteLine("Choose the field you wish to modify");
-                Console.WriteLine("");
-                Console.WriteLine("╔══════════╗ ╔═══════════╗ ╔═══════════╗ ╔═══════════╗ ╔═══════════╗");
-                Console.WriteLine("║ 1. Make  ║ ║  2. Model ║ ║  3. Year  ║ ║ 4. Colour ║ ║ 5. Milage ║");
-                Console.WriteLine("╚══════════╝ ╚═══════════╝ ╚═══════════╝ ╚═══════════╝ ╚═══════════╝");
-                selection = Console.ReadKey().KeyChar;
-                Console.WriteLine("");
-                switch (selection)
-                {
-                    case '1':
-                        Console.WriteLine("");
-                        Console.WriteLine("Enter the new Make");
-                        foundCar.Make = Console.ReadLine();
-                        Console.WriteLine("");
-                        db.SaveChanges();
-                        Console.WriteLine("Car's Make has been successfully updated!");
-                        break;
-
-                    case '2':
-                        Console.WriteLine("");
-                        Console.WriteLine("Enter the new Model");
-                        foundCar.Model = Console.ReadLine();
-                        Console.WriteLine("");
-                        db.SaveChanges();
-                        Console.WriteLine("Car's Model has been successfully updated!");
-                        break;
-
-                    case '3':
-                        Console.WriteLine("");
-                        Console.WriteLine("Enter the new Year");
-                        foundCar.Year = Int32.Parse(Console.ReadLine());
-                        Console.WriteLine("");
-                        db.SaveChanges();
-                        Console.WriteLine("Car's Year has been successfully updated!");
-                        break;
-
-                    case '4':
-                        Console.WriteLine("");
-                        Console.WriteLine("Enter the new Colour");
-                        foundCar.Colour = Console.ReadLine();
-                        Console.WriteLine("");
-                        db.SaveChanges();
-                        Console.WriteLine("Car's Colour has been successfully updated!");
-                        break;
-
-                    case '5':
-                        Console.WriteLine("");
-                        Console.WriteLine("Enter the new Milage");
-                        foundCar.Milage = Int32.Parse(Console.ReadLine());
-                        Console.WriteLine("");
-                        db.SaveChanges();
-                        Console.WriteLine("Car's Milage has been successfully updated!");
-                        break;
-
-                    case 'q':
-                        Console.WriteLine("");
-                        Console.WriteLine("Quitting now");
-                        break;
-
-                    default:
-                        Console.WriteLine("");
-                        Console.WriteLine("Thats not an option you fool");
-                        break;
-                }
-            }
         }
 
 
         private static void ListCars()
         {
             Console.WriteLine("");
-            using (var db = new CarRentalDBContext())
-            {
-                db.Cars
-                    .ToList()
-                    .ForEach(car => Console.WriteLine("Id:" + car.Id + "  " + car.Make + " " + car.Model));
-                Console.WriteLine("");
-                Console.WriteLine("Press enter to return to Car menu");
-                Console.ReadLine();
-            }
+            Console.WriteLine("");
+            carRepo.List();
         }
 
 
@@ -516,14 +402,5 @@ namespace ConsoleApp.PostgreSQL
         }
     }
 }
-
-
-
-
-
-/* 
-    Try again the unique index
-    Try to get menu with level and loop and arrays
-*/
 
 
