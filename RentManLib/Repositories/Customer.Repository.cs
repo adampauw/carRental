@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RentmanLib
@@ -117,18 +118,19 @@ namespace RentmanLib
       }
     }
 
-    public void List()
+    public List<Customer> List()
     {
       using (var db = new CarRentalDBContext())
       {
-        db.Customers
-            .ToList()
-            .ForEach(Customer => Console.WriteLine("Id:" + Customer.Id + "  " + Customer.first_name + " " + Customer.last_name));
-        Console.WriteLine("");
-        Console.WriteLine("Press enter to return to Customer menu");
-        Console.ReadLine();
+       return db.Customers.ToList();
+         
       }
     }
 
   }
 }
+
+// .ForEach(Customer => Console.WriteLine("Id:" + Customer.Id + "  " + Customer.first_name + " " + Customer.last_name));
+//         Console.WriteLine("");
+//         Console.WriteLine("Press enter to return to Customer menu");
+//         Console.ReadLine();
