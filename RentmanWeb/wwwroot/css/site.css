@@ -58,3 +58,30 @@ body {
 /* Data Tables
 -------------------------------------------------- */
 
+.table-body {
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding-bottom: 5px;
+  font-family: monospace;
+  width: 70%;
+  margin: auto;
+}
+
+.table-header {
+  background-color: cornflowerblue;
+  color: azure;
+  border-radius: 10px 10px 0 0;
+}
+
+.titles {
+  border-bottom: 2px solid white;
+}
+
+
+tr:nth-child(odd) {
+   background-color: aliceblue; 
+}
+
+tr:nth-child(even) { 
+  background-color: #fff; 
+}
