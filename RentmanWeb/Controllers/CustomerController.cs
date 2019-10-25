@@ -18,8 +18,21 @@ namespace Rentman.Controllers
     public IActionResult Index()
     {
       var customerList = custRepo.List();
-      var viewModel = new CustomerViewModel(customerList);
+      var viewModel = new CustomerListViewModel(customerList);
       return View(viewModel);
+    }
+    public IActionResult Details(int? id)
+    {
+      if (id == null) {
+        return NotFound();
+      }
+      
+      var customer = custRepo.List().FirstOrDefault(c => c.Id == id);
+      if (customer == null) {
+        return NotFound();
+      }
+      return View(customer);
+
     }
   }
 

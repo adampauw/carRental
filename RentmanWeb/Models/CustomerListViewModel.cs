@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Rentman
 {
-  public class CustomerViewModel
+  public class CustomerListViewModel
   {
     public List<Customer> CustomerList;
 
-    public CustomerViewModel(List<Customer> customerList)
+    public CustomerListViewModel(List<Customer> customerList)
     {
       CustomerList = customerList;
 

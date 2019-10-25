@@ -10,7 +10,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/Rentman.dll",
+            "program": "${workspaceFolder}/RentmanWeb/bin/Debug/netcoreapp2.2/RentmanWeb.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",

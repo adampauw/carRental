@@ -1,4 +1,4 @@
-@model Rentman.CustomerViewModel
+@model Rentman.CustomerListViewModel
 @{
     ViewData["Index"] = "List Customers";
 }
@@ -8,7 +8,7 @@
 	<table style="width:100%">
 		<tr class="titles">
 			<th>Id</th>
-			<th>First Name</th> 
+			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Drivers License</th>
 			<th>Phone Number</th>
@@ -16,11 +16,12 @@
 		@foreach (RentmanLib.Customer item in Model.CustomerList)
 			{
 				<tr>
-					<td>@item.Id</td>
+					<td><a asp-controller="Customer" asp-action="Details" asp-route-id= "@item.Id">@item.Id</a></td>
 					<td>@item.first_name</td>
 					<td>@item.last_name</td>
 					<td>@item.DL_Number</td>
 					<td>@item.phone_number</td>
+					<td><a asp-controller="Customer" asp-action="Edit" asp-route-id= "@item.Id">Edit</a></td>
 				</tr>
 			}
 	</table>
