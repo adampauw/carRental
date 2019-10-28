@@ -65,3 +65,4 @@
 /Users/adampauw/Rentman/RentmanWeb/obj/Debug/netcoreapp2.2/Razor/Views/Car/Index.g.cshtml.cs
 /Users/adampauw/Rentman/RentmanWeb/obj/Debug/netcoreapp2.2/Razor/Views/Customer/Index.g.cshtml.cs
 /Users/adampauw/Rentman/RentmanWeb/obj/Debug/netcoreapp2.2/Razor/Views/Car/Create.g.cshtml.cs
+/Users/adampauw/Rentman/RentmanWeb/obj/Debug/netcoreapp2.2/Razor/Views/Car/Edit.g.cshtml.cs

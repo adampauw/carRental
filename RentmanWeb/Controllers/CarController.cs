@@ -33,6 +33,16 @@ namespace Rentman.Controllers
       return View(vm);
       
     }
+    public IActionResult Edit()
+    {
+      return View();
+    }
+    [HttpPost]
+    public IActionResult Edit([FromForm]CarCreateViewModel vg)
+    {
+      return View(vg);
+      
+    }
   }
 
 }

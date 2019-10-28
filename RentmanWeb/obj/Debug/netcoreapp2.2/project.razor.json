@@ -3001,6 +3001,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Car/Edit.cshtml",
+      "TargetPath": "Views/Car/Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Car/Create.cshtml",
       "TargetPath": "Views/Car/Create.cshtml",
       "FileKind": "mvc"
